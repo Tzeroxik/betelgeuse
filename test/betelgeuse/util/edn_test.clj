@@ -1,24 +1,20 @@
 (ns betelgeuse.util.edn-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer :all] 
             [betelgeuse.util.edn :as edn]))
 
 (deftest test-passes-if-has-keys
   (testing "should check if object has the expected keys"
-    (let [obj {:ok 1 :boomer 2 :banana 3}]
-      (is (edn/contains-all? [:ok :boomer :banana] obj)))))
+    (let [obj {:a 1 :b 2 :c 3}]
+      (is (edn/contains-all? [:a :b :c] obj)))))
 
 (deftest test-passes-if-has-some-keys
   (testing "should check if object has the expected keys"
-    (let [obj {:ok 1 :boomer 2 :banana 3}]
-      (is (edn/contains-all? [:ok :banana] obj)))))
+    (let [obj {:a 1 :b 2 :c 3}]
+      (is (edn/contains-all? [:a :b] obj)))))
 
-;(deftest test-fails-if-missing-key
-;  (testing "should check if object has the expected keys"
-;    (let [obj {:ok 1 :boomer 2 :banana 3}]
-;      (is (t (edn/contains-all? [:d] obj))))))
-
-(deftest test-if-translates-string-to-edn
+(deftest test-passes-if-translates-string-to-edn
   (testing "Tests if translates to edn the expected object"
     (is
-      (edn/str-2-obj "{:ok 1 :boomer 2 :banana 3}" [:ok :boomer :banana])
-      {:ok 1 :boomer 2 :banana 3})))
+      (edn/str-2-obj "{:a 1 :b 2 :c 3}" [:a :b :c])
+      {:a 1 :b 2 :c 3})))
+
