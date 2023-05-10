@@ -1,5 +1,6 @@
 (ns betelgeuse.util.edn
-  (:require [clojure.edn :as edn])
+  (:require [clojure.edn :as edn]
+            [betelgeuse.util.file :as file])
   (:import (java.nio.charset StandardCharsets)))
 
 (defn contains-all? [keys obj]
@@ -14,10 +15,5 @@
       (throw (ex-info "Object doesn't contain all keys" {:object obj :keys with-keys})))))
 
 (defn load-edn [^String name with-keys]
-  (with-open [stream (ClassLoader/getSystemResourceAsStream name)]
-    (if stream
-      (-> stream
-          (.readAllBytes)
-          (String. StandardCharsets/UTF_8)
-          (str-2-obj with-keys))
-      (throw (ex-info (str "Unable to load file " name) {:name name})))))
+  (-> (file/load-file-as-str name)
+      (str-2-obj with-keys)))

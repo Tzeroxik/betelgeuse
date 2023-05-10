@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/clojure,intellij+all,java,scala,kotlin
 # Edit at https://www.toptal.com/developers/gitignore?templates=clojure,intellij+all,java,scala,kotlin
 
+resources/db
+
 ### Clojure ###
 pom.xml
 pom.xml.asc
