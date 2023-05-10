@@ -1,7 +1,6 @@
 (ns betelgeuse.util.edn
-  (:require [clojure.edn :as edn]
-            [betelgeuse.util.file :as file])
-  (:import (java.nio.charset StandardCharsets)))
+  (:require [betelgeuse.util.file :as file]
+            [clojure.edn :as edn]))
 
 (defn contains-all? [keys obj]
   (->> keys
